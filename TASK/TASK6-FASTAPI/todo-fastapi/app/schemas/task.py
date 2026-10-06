@@ -1,0 +1,16 @@
+from pydantic import BaseModel,Field
+
+class TaskCreate(BaseModel):
+    title:str=Field(min_length=1,max_length=20)#Field:添加限制
+
+class TaskUpdate(BaseModel):
+    title:str|None=Field(None,min_length=1,max_length=20)
+    completed:bool|None=None
+
+class TaskResponse(BaseModel):
+    id:int
+    title:str
+    completed:bool
+    user_id:int
+    model_config={"from_attributes":True}
+
